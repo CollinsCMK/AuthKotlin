@@ -1,17 +1,12 @@
 package com.example.auth
 
-import android.provider.CalendarContract.Colors
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonDefaults
@@ -19,6 +14,7 @@ import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,8 +28,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun RegisterScreen(navController: NavController) {
+    var name by remember {
+        mutableStateOf("")
+    }
+
     var email by remember {
+        mutableStateOf("")
+    }
+    
+    var username by remember {
+        mutableStateOf("")
+    }
+
+    var phone by remember {
         mutableStateOf("")
     }
 
@@ -43,110 +51,84 @@ fun LoginScreen(navController: NavController) {
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Image(
             painter = painterResource(id = R.drawable.download),
-            contentDescription = "Login Image",
+            contentDescription = "Register Image",
             modifier = Modifier
                 .size(100.dp)
                 .clip(CircleShape)
-                .background(Color.Black)
+                .background(color = Color.Black)
         )
-        
+
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Welcome Back",
+            text = "Create Account",
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold
         )
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        Text(
-            text = "Login to your account"
-        )
-
+        Text(text = "Sign up to get started!")
+        
         Spacer(modifier = Modifier.height(4.dp))
 
+        OutlinedTextField(
+            value = name,
+            onValueChange = { name = it },
+            label = { Text(text = "Name") }
+        )
+        
+        Spacer(modifier = Modifier.height(4.dp))
+        
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text(text = "Email or Username")}
+            label = { Text(text = "Email") }
         )
-
+        
         Spacer(modifier = Modifier.height(4.dp))
-
+        
+        OutlinedTextField(
+            value = username,
+            onValueChange = { username = it },
+            label = { Text(text = "Username") }
+        )
+        
+        Spacer(modifier = Modifier.height(4.dp))
+        
+        OutlinedTextField(
+            value = phone,
+            onValueChange = { phone = it },
+            label = { Text(text = "Phone Number") }
+        )
+        
+        Spacer(modifier = Modifier.height(4.dp))
+        
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "Password")},
+            label = { Text(text = "Password") },
             visualTransformation = PasswordVisualTransformation()
         )
         
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         
         ElevatedButton(
             colors = ButtonDefaults.buttonColors(
                 contentColor = Color.Black
             ),
             onClick = {
-                navController.navigate("RegisterScreen")
+                navController.navigate("LoginScreen")
             }
         ) {
             Text(
-                text = "LogIn",
+                text = "Sign up",
                 color = Color.White
-            )
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Text(
-            text = "Forgot password?",
-            modifier = Modifier.clickable {  }
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Text(text = "Or sign in with")
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(40.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.facebook),
-                contentDescription = "facebook icon",
-                modifier = Modifier
-                    .size(50.dp)
-                    .clip(CircleShape)
-                    .background(Color.Black)
-                    .clickable { }
-            )
-
-            Image(
-                painter = painterResource(id = R.drawable.instagram),
-                contentDescription = "instagram icon",
-                modifier = Modifier
-                    .size(50.dp)
-                    .clip(CircleShape)
-                    .background(Color.Black)
-                    .clickable { }
-            )
-
-            Image(
-                painter = painterResource(id = R.drawable.x),
-                contentDescription = "x icon",
-                modifier = Modifier
-                    .size(50.dp)
-                    .clip(CircleShape)
-                    .background(Color.Black)
-                    .clickable { }
             )
         }
     }
