@@ -2,11 +2,15 @@ package com.example.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonDefaults
@@ -129,6 +133,61 @@ fun RegisterScreen(navController: NavController) {
             Text(
                 text = "Sign up",
                 color = Color.White
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Already have an account? ")
+
+            Text(
+                text = "Sign In",
+                modifier = Modifier.clickable {
+                    navController.navigate("LoginScreen")
+                }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(text = "Or sign up with")
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 40.dp, end = 40.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.facebook),
+                contentDescription = "Facebook icon",
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+                    .background(Color.Black)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.instagram),
+                contentDescription = "Facebook icon",
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+                    .background(Color.Black)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.x),
+                contentDescription = "Facebook icon",
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+                    .background(Color.Black)
             )
         }
     }
